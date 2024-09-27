@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #0B3749;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 3px 4px rgba(0, 0, 0, 0.24);
+            border-radius: 5px;
+        }
+        h1 {
+            color: #5b3bd3;
+            font-weight: bold;
+            text-align: center;
+        }
+        .author-info {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .author-info img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #0B3749;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        a {
+            color: #05e0c0;
+            text-decoration: none;
+        }
+        .code-container {
+            background-color: black;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        .info {
+            font-size: 14px;
+            color: #555;
+            margin: 10px 0;
+        }
+        .info i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>How to Install Laravel 11 on Windows</h1>
+
+    <div class="author-info">
+        <img src="logo.jpeg" alt="Muhammad Umer Shahzad">
+        <h2>Muhammad Umer Shahzad</h2>
+        <p class="info"><i class="fas fa-calendar-alt"></i><em>Published on: <span id="publish-date">September 27, 2024</span></em></p>
+        <p class="info"><i class="fas fa-clock"></i><em>Estimated reading time: <span id="reading-time">7 minutes</span></em></p>
+    </div>
+
+    <h2>Introduction</h2>
+    <p>Hi Guys, Welcome to the new blog! In this post, I'm going to discuss how to install <strong>Laravel 11</strong>, the famous PHP framework.</p>
+
+    <h2>Prerequisites</h2>
+    <p>Before diving into the Laravel installation procedure, make sure that your system meets the following requirements:</p>
+    <ul>
+        <li><strong>Windows</strong> operating system (Windows 10 or later recommended)</li>
+        <li><strong>PHP</strong> (version 8.1 or higher)</li>
+        <li><strong>Composer</strong> (the dependency manager for PHP)</li>
+    </ul>
+
+    <h2>Step 1: Install PHP</h2>
+    <p>You can download PHP from here: <a href="https://www.php.net/downloads.php">https://www.php.net/downloads.php</a>.</p>
+    <p><strong>Note:</strong> If you are using local server environments like <strong>XAMPP</strong>, <strong>WAMP</strong>, <strong>LAMP</strong>, <strong>MAMP</strong>, or <strong>EasyPHP</strong>, PHP is already installed, so you can skip this step.</p>
+    <p>To verify that PHP is installed correctly, open <strong>Command Prompt</strong> or <strong>PowerShell</strong> and run:</p>
+    
+    <div class="code-container">
+        php -v
+    </div>
+    
+    <p>The output should be like this:</p>
+
+    <div class="code-container">
+        PHP 8.1.12 (cli) (built: Sep 28 2024)
+    </div>
+
+    <h2>Step 2: Install Composer</h2>
+    <p>Laravel uses Composer to manage dependencies. Download Composer here: <a href="https://getcomposer.org/download/">https://getcomposer.org/download/</a>.</p>
+    <p>Once Composer is installed, verify using terminal:</p>
+    
+    <div class="code-container">
+        composer -v
+    </div>
+    
+    <p>Output like this:</p>
+
+    <div class="code-container">
+        Composer version 2.4.3 2024-09-27
+    </div>
+
+    <h2>Step 3: Install Laravel</h2>
+    <p>There are several ways to install Laravel. I will discuss two of them here:</p>
+
+    <h3>1. Use Laravel Installer:</h3>
+    <p>The Laravel Installer is a dedicated tool that simplifies the installation process. To install it:</p>
+    
+    <div class="code-container">
+        composer global require laravel/installer
+    </div>
+    
+    <p>Ensure Composer’s global directory is added to your PATH environment variable. Typically, it's located at:</p>
+
+    <div class="code-container">
+        C:\Users\YourUsername\AppData\Roaming\Composer\vendor\bin
+    </div>
+
+    <p>Run the following command to create a new Laravel project:</p>
+
+    <div class="code-container">
+        laravel new my-laravel-app
+    </div>
+
+    <p>This will create a new project in the folder my-laravel-app.</p>
+
+    <h3>2. Use Composer (without Laravel Installer):</h3>
+    <p>You can also install Laravel using Composer directly without the installer. This method is more general and works for other PHP packages as well.</p>
+    
+    <p>Navigate to the directory where you want to install Laravel:</p>
+
+    <div class="code-container">
+        cd path/to/your/directory
+    </div>
+    
+    <p>Run the following command to install Laravel:</p>
+
+    <div class="code-container">
+        composer create-project --prefer-dist laravel/laravel my-laravel-app
+    </div>
+    
+    <p>Once the installation is complete, navigate into your project folder:</p>
+
+    <div class="code-container">
+        cd my-laravel-app
+    </div>
+
+    <h2>Step 4: Start the Laravel Development Server</h2>
+    <p>Start the Laravel server using:</p>
+
+    <div class="code-container">
+        php artisan serve
+    </div>
+
+    <p>This will start the Laravel server at <strong>http://localhost:8000</strong>. Open your browser and visit the URL to see your Laravel app running.</p>
+
+    <h2>Step 5: Common Issues and Troubleshooting</h2>
+    <p>Here are a few common issues you might encounter and how to resolve them:</p>
+    <ul>
+        <li>PHP Not Recognized: Ensure PHP is added to your environment variables.</li>
+        <li>Composer Not Recognized: Make sure Composer’s global bin directory is added to your PATH.</li>
+        <li>Permissions Issues: Run your terminal as Administrator to avoid permission problems.</li>
+    </ul>
+
+    <h2>Step 6: Conclusion</h2>
+    <p>Congratulations! You've successfully installed Laravel 11 on your Windows machine. Now you're ready to build powerful and scalable web applications.</p>
+
+    <p>Stay tuned, and happy coding!</p>
+</div>
+
+</body>
+</html>
