@@ -1,6 +1,8 @@
 # How to Install Laravel 11 on Windows
 
-**By [Muhammad Umer Shahzad]**  
+**![Muhammad Umer Shahzad](URL_OF_YOUR_PICTURE){: style="width:50px; height:50px; border-radius:50%;"}
+Muhammad Umer Shahzad
+**  
 *Published on: September 27, 2024*  
 *Estimated reading time: 7 minutes*
 
