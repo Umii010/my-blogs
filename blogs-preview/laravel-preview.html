@@ -95,8 +95,8 @@
         <p class="description">
             This blog post discusses the steps to install Laravel 11, the famous PHP framework, on your Windows machine. Learn the prerequisites and installation methods to get started quickly.
         </p>
-        
-        <a href="{{ url('/main-blog/' . $filename) }}" class="read-more">Read More</a>
+
+<a href="{{ url('/main-blog/' . urlencode($filename)) }}" class="read-more">Read More</a>
 
         <!-- <a href="#" class="read-more" data-filename="install-laravel.html">Read More</a> -->
 
