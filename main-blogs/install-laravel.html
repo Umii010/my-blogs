@@ -4,176 +4,457 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
-     
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 3px 4px rgba(0, 0, 0, 0.24);
+        /* Import Oxygen font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
+
+        body {
+            font-family: 'Oxygen', sans-serif;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+            font-style: normal;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        code {
+            color: white !important;
+   
+}
+
+         .comment-section {
+            padding-top: 20px;
+        }
+
+        .comment-section h3 {
+            border-bottom: 3px solid rgb(126, 34, 206);
+            font-size: 1.5rem;
+            color: #0B3749;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+
+        .comment-box {
+            width: 200%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
             border-radius: 5px;
+            margin-bottom: 10px;
+            transition: border-color 0.3s ease-in-out;
+
         }
-        h1 {
-            color: #5b3bd3;
+         .comment-box:focus {
+        border-color: rgb(126, 34, 206);
+        outline: none;
+        box-shadow: 0 0 5px rgba(126, 34, 206, 0.5);
+    }
+
+        .submit-comment {
+            background-color: #05e0c0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-comment:hover {
+            background-color: rgb(126, 34, 206);
+        }
+
+        .comments-list {
+            margin-top: 20px;
+        }
+
+        .comment {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .comment .author {
             font-weight: bold;
-            text-align: center;
+            color: #0B3749;
         }
+
+        .comment .timestamp {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .comment .text {
+            margin-top: 5px;
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        .install-laravel {
+            color: rgb(126, 34, 206);
+            font-weight: 600;
+            text-align: center;
+            font-size: 2.5rem;
+            line-height: 130%;
+            letter-spacing: 0.5px;
+            margin-bottom: 0px;
+        }
+
+        /* Author Information */
         .author-info {
             text-align: center;
             margin: 20px 0;
+            border-bottom: 2px solid #f4f4f4;
+            padding-bottom: 20px;
         }
+
         .author-info img {
-            width: 70px;
-            height: 70px;
+            width: 90px;
+            height: 95px;
             border-radius: 50%;
-            margin-bottom: 10px;
+            transition: transform 0.3s ease;
         }
+
+        .author-info img:hover {
+            transform: scale(1.1);
+        }
+
         h2 {
             color: #0B3749;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 30px;
+            border-bottom: 3px solid rgb(126, 34, 206);
+            padding-bottom: 2px;
         }
+
+        /* Link Styles */
         a {
             color: #05e0c0;
             text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
         }
+
+        a:hover {
+            color: rgb(126, 34, 206);
+            text-decoration: underline;
+        }
+
         .code-container {
-            background-color: black;
-            color: white;
+            background-color: #333;
+            color: #fff;
             padding: 15px;
             border-radius: 5px;
             overflow-x: auto;
-            margin: 15px 0;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            position: relative;
         }
-        .info {
-            font-size: 14px;
-            color: #555;
-            margin: 10px 0;
+
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            background-color: #05e0c0;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            top: 10px;
         }
-        .info i {
-            margin-right: 5px;
+
+        .copy-btn:hover {
+            background-color: rgb(126, 34, 206);
+        }
+
+        .umer-shahzad {
+            font-size: 38px;
+            line-height: 130%;
+            letter-spacing: 0.5px;
+            font-weight: 200;
+            margin: 0px;
         }
     </style>
 </head>
 <body>
-<div class="section">
+    <div class="section">
+        <div class="container">
+            <p class="install-laravel">How to Install Laravel 11 on Windows</p>
+
+            <div class="author-info">
+                <img src="logo.jpeg" alt="Author Image">
+                <p class="umer-shahzad">Muhammad Umer Shahzad</p>
+                <p class="info"><i class="fas fa-calendar-alt"></i><em>Published on: <span id="publish-date">September 27, 2024</span></em></p>
+                <p class="info"><i class="fas fa-clock"></i><em>Estimated reading time: <span id="reading-time">7 minutes</span></em></p>
+            </div>
+
+            <h2>Introduction</h2>
+            <p>Hi Guys, Welcome to the new blog! In this post, I'm going to discuss how to install <strong>Laravel 11</strong>, the famous PHP framework.</p>
+
+            <h2>Prerequisites</h2>
+            <p>Before diving into the Laravel installation procedure, make sure that your system meets the following requirements:</p>
+            <ul>
+                <li><strong>Windows</strong> operating system (Windows 10 or later recommended)</li>
+                <li><strong>PHP</strong> (version 8.1 or higher)</li>
+                <li><strong>Composer</strong> (the dependency manager for PHP)</li>
+            </ul>
+
+            <h2>Step 1: Install PHP</h2>
+            <p>You can download PHP from here: <a href="https://www.php.net/downloads.php" target="_blank">https://www.php.net/downloads.php</a>.</p>
+            <p><strong>Note:</strong> If you are using local server environments like <strong>XAMPP</strong>, <strong>WAMP</strong>, <strong>LAMP</strong>, <strong>MAMP</strong>, or <strong>EasyPHP</strong>, PHP is already installed, so you can skip this step.</p>
+            <p>To verify that PHP is installed correctly, open <strong>Command Prompt</strong> or <strong>PowerShell</strong> and run:</p>
+            
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyToClipboard('#code1')"><i class="fas fa-copy"></i> Copy</button>
+                <code id="code1">php -v</code>
+            </div>
+            
+            <p>The output should be like this:</p>
+
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyToClipboard('#code2')"><i class="fas fa-copy"></i> Copy</button>
+                <code id="code2">PHP 8.1.12 (cli) (built: Sep 28 2024)</code>
+            </div>
+
+            <h2>Step 2: Install Composer</h2>
+            <p>Laravel uses Composer to manage dependencies. Download Composer here: <a href="https://getcomposer.org/download/" target="_blank">https://getcomposer.org/download/</a>.</p>
+            <p>Once Composer is installed, verify using terminal:</p>
+            
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyToClipboard('#code3')"><i class="fas fa-copy"></i> Copy</button>
+                <code id="code3">composer -v</code>
+            </div>
+            
+            <p>Output like this:</p>
+
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyToClipboard('#code4')"><i class="fas fa-copy"></i> Copy</button>
+                <code id="code4">Composer version 2.4.3 2024-09-27</code>
+            </div>
+
+            <h2>Step 3: Install Laravel</h2>
+            <p>There are several ways to install Laravel. I will discuss two of them here:</p>
+
+            <h3>1. Use Laravel Installer:</h3>
+            <p>The Laravel Installer is a dedicated tool that simplifies the installation process. To install it:</p>
+            
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyToClipboard('#code5')"><i class="fas fa-copy"></i> Copy</button>
+                <code id="code5">composer global require laravel/installer</code>
+            </div>
+            
+            <p>Ensure Composer’s global directory is added to your PATH environment variable. Typically, it's located at:</p>
+
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyToClipboard('#code6')"><i class="fas fa-copy"></i> Copy</button>
+                <code id="code6">C:\Users\YourUsername\AppData\Roaming\Composer\vendor\bin</code>
+            </div>
+
+            <p>Run the following command to create a new Laravel project:</p>
+
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyToClipboard('#code7')"><i class="fas fa-copy"></i> Copy</button>
+                <code id="code7">laravel new my-laravel-app</code>
+            </div>
+
+            <p>This will create a new project in the folder my-laravel-app.</p>
+
+            <h3>2. Use Composer (without Laravel Installer):</h3>
+            <p>You can also install Laravel using Composer directly without the installer. This method is more general and works for other PHP packages as well.</p>
+            
+            <p>Navigate to the directory where you want to install Laravel:</p>
+
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyToClipboard('#code8')"><i class="fas fa-copy"></i> Copy</button>
+                <code id="code8">cd path/to/your/directory</code>
+            </div>
+            
+            <p>Run the following command to install Laravel:</p>
+
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyToClipboard('#code9')"><i class="fas fa-copy"></i> Copy</button>
+                <code id="code9">composer create-project --prefer-dist laravel/laravel my-laravel-app</code>
+            </div>
+            
+            <p>Once the installation is complete, navigate into your project folder:</p>
+
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyToClipboard('#code10')"><i class="fas fa-copy"></i> Copy</button>
+                <code id="code10">cd my-laravel-app</code>
+            </div>
+
+            <h2>Step 4: Start the Laravel Development Server</h2>
+            <p>Start the Laravel server using:</p>
+
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyToClipboard('#code11')"><i class="fas fa-copy"></i> Copy</button>
+                <code id="code11">php artisan serve</code>
+            </div>
+
+            <p>This will start the Laravel server at <strong>http://localhost:8000</strong>. Open your browser and visit the URL to see your Laravel app running.</p>
+
+            <h2>Step 5: Common Issues and Troubleshooting</h2>
+            <p>Here are a few common issues you might encounter and how to resolve them:</p>
+            <ul>
+                <li>PHP Not Recognized: Ensure PHP is added to your environment variables.</li>
+                <li>Composer Not Recognized: Make sure Composer’s global bin directory is added to your PATH.</li>
+                <li>Permissions Issues: Run your terminal as Administrator to avoid permission problems.</li>
+            </ul>
+
+            <h2>Step 6: Conclusion</h2>
+            <p>Congratulations! You've successfully installed Laravel 11 on your Windows machine. Now you're ready to build powerful and scalable web applications.</p>
+
+            <p>Stay tuned, and happy coding!</p>
+        </div>
+    </div>
+
 <div class="container">
-    <h1>How to Install Laravel 11 on Windows</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Comment Section -->
+            <div class="comment-section">
+                <h3>Leave a Comment</h3>
+                <textarea id="comment-box" class="comment-box" rows="8" placeholder="Write your comment here..."></textarea>
+                <button id="submit-comment" class="submit-comment">Post Comment</button>
 
-    <div class="author-info">
-        <img src="logo.jpeg" alt="Muhammad Umer Shahzad">
-        <h2>Muhammad Umer Shahzad</h2>
-        <p class="info"><i class="fas fa-calendar-alt"></i><em>Published on: <span id="publish-date">September 27, 2024</span></em></p>
-        <p class="info"><i class="fas fa-clock"></i><em>Estimated reading time: <span id="reading-time">7 minutes</span></em></p>
+                <div class="comments-list" id="comments-list">
+                    <!-- Comments will be dynamically loaded here -->
+                </div>
+            </div>
+        </div>
     </div>
-
-    <h2>Introduction</h2>
-    <p>Hi Guys, Welcome to the new blog! In this post, I'm going to discuss how to install <strong>Laravel 11</strong>, the famous PHP framework.</p>
-
-    <h2>Prerequisites</h2>
-    <p>Before diving into the Laravel installation procedure, make sure that your system meets the following requirements:</p>
-    <ul>
-        <li><strong>Windows</strong> operating system (Windows 10 or later recommended)</li>
-        <li><strong>PHP</strong> (version 8.1 or higher)</li>
-        <li><strong>Composer</strong> (the dependency manager for PHP)</li>
-    </ul>
-
-    <h2>Step 1: Install PHP</h2>
-    <p>You can download PHP from here: <a href="https://www.php.net/downloads.php">https://www.php.net/downloads.php</a>.</p>
-    <p><strong>Note:</strong> If you are using local server environments like <strong>XAMPP</strong>, <strong>WAMP</strong>, <strong>LAMP</strong>, <strong>MAMP</strong>, or <strong>EasyPHP</strong>, PHP is already installed, so you can skip this step.</p>
-    <p>To verify that PHP is installed correctly, open <strong>Command Prompt</strong> or <strong>PowerShell</strong> and run:</p>
-    
-    <div class="code-container">
-        php -v
-    </div>
-    
-    <p>The output should be like this:</p>
-
-    <div class="code-container">
-        PHP 8.1.12 (cli) (built: Sep 28 2024)
-    </div>
-
-    <h2>Step 2: Install Composer</h2>
-    <p>Laravel uses Composer to manage dependencies. Download Composer here: <a href="https://getcomposer.org/download/">https://getcomposer.org/download/</a>.</p>
-    <p>Once Composer is installed, verify using terminal:</p>
-    
-    <div class="code-container">
-        composer -v
-    </div>
-    
-    <p>Output like this:</p>
-
-    <div class="code-container">
-        Composer version 2.4.3 2024-09-27
-    </div>
-
-    <h2>Step 3: Install Laravel</h2>
-    <p>There are several ways to install Laravel. I will discuss two of them here:</p>
-
-    <h3>1. Use Laravel Installer:</h3>
-    <p>The Laravel Installer is a dedicated tool that simplifies the installation process. To install it:</p>
-    
-    <div class="code-container">
-        composer global require laravel/installer
-    </div>
-    
-    <p>Ensure Composer’s global directory is added to your PATH environment variable. Typically, it's located at:</p>
-
-    <div class="code-container">
-        C:\Users\YourUsername\AppData\Roaming\Composer\vendor\bin
-    </div>
-
-    <p>Run the following command to create a new Laravel project:</p>
-
-    <div class="code-container">
-        laravel new my-laravel-app
-    </div>
-
-    <p>This will create a new project in the folder my-laravel-app.</p>
-
-    <h3>2. Use Composer (without Laravel Installer):</h3>
-    <p>You can also install Laravel using Composer directly without the installer. This method is more general and works for other PHP packages as well.</p>
-    
-    <p>Navigate to the directory where you want to install Laravel:</p>
-
-    <div class="code-container">
-        cd path/to/your/directory
-    </div>
-    
-    <p>Run the following command to install Laravel:</p>
-
-    <div class="code-container">
-        composer create-project --prefer-dist laravel/laravel my-laravel-app
-    </div>
-    
-    <p>Once the installation is complete, navigate into your project folder:</p>
-
-    <div class="code-container">
-        cd my-laravel-app
-    </div>
-
-    <h2>Step 4: Start the Laravel Development Server</h2>
-    <p>Start the Laravel server using:</p>
-
-    <div class="code-container">
-        php artisan serve
-    </div>
-
-    <p>This will start the Laravel server at <strong>http://localhost:8000</strong>. Open your browser and visit the URL to see your Laravel app running.</p>
-
-    <h2>Step 5: Common Issues and Troubleshooting</h2>
-    <p>Here are a few common issues you might encounter and how to resolve them:</p>
-    <ul>
-        <li>PHP Not Recognized: Ensure PHP is added to your environment variables.</li>
-        <li>Composer Not Recognized: Make sure Composer’s global bin directory is added to your PATH.</li>
-        <li>Permissions Issues: Run your terminal as Administrator to avoid permission problems.</li>
-    </ul>
-
-    <h2>Step 6: Conclusion</h2>
-    <p>Congratulations! You've successfully installed Laravel 11 on your Windows machine. Now you're ready to build powerful and scalable web applications.</p>
-
-    <p>Stay tuned, and happy coding!</p>
 </div>
-</div>
+ 
+
+
+   <script>
+
+ // Simulate blog post ID for AJAX (replace with your dynamic ID logic)
+        const postId = '12345';
+
+        // Function to handle comment submission
+        $(document).on('click', '#submit-comment', function () {
+            const commentText = $('#comment-box').val().trim();
+            if (!commentText) {
+                alert('Please write a comment before submitting.');
+                return;
+            }
+
+            // AJAX POST request to submit the comment
+            $.ajax({
+                url: '/submit-comment', // Replace with your backend endpoint
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    postId: postId,
+                    comment: commentText
+                }),
+                success: function (response) {
+                    // Append the new comment to the comment list
+                    $('#comments-list').prepend(`
+                        <div class="comment">
+                            <p class="author">You</p>
+                            <p class="timestamp">Just now</p>
+                            <p class="text">${commentText}</p>
+                        </div>
+                    `);
+
+                    // Clear the comment box
+                    $('#comment-box').val('');
+                },
+                error: function () {
+                    alert('Failed to post comment. Please try again later.');
+                }
+            });
+        });
+
+        // Function to load comments via AJAX
+        function loadComments() {
+            $.ajax({
+                url: `/get-comments?postId=${postId}`, // Replace with your backend endpoint
+                method: 'GET',
+                success: function (comments) {
+                    comments.forEach(comment => {
+                        $('#comments-list').append(`
+                            <div class="comment">
+                                <p class="author">${comment.author}</p>
+                                <p class="timestamp">${comment.timestamp}</p>
+                                <p class="text">${comment.text}</p>
+                            </div>
+                        `);
+                    });
+                },
+                error: function () {
+                    $('#comments-list').html('<p>Failed to load comments. Please try again later.</p>');
+                }
+            });
+        }
+
+        // Load comments on page load
+        $(document).ready(function () {
+            loadComments();
+        });
+
+
+
+    function copyToClipboard(elementId) {
+        const copyText = document.querySelector(elementId);
+        const textArea = document.createElement("textarea");
+        textArea.value = copyText.innerText;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+
+        const message = document.createElement("div");
+        message.innerText = "Copied Successfully!";
+        message.style.position = "fixed";
+        message.style.bottom = "20px";
+        message.style.right = "20px";
+        message.style.backgroundColor = "#28a745";
+        message.style.color = "white";
+        message.style.padding = "10px 20px";
+        message.style.borderRadius = "5px";
+        message.style.zIndex = "9999";
+        message.style.fontSize = "14px";
+        document.body.appendChild(message);
+        setTimeout(() => {
+            message.remove();
+        }, 2000);
+    }
+
+    function calculateReadingTime() {
+        const blogContent = document.body.innerText;
+
+        const wordCount = blogContent.split(/\s+/).filter(word => word.length > 0).length;
+
+        const wordsPerMinute = 200;
+        const readingTime = Math.ceil(wordCount / wordsPerMinute);
+
+        const readingTimeElement = document.getElementById('reading-time');
+        readingTimeElement.innerText = `${readingTime} minute${readingTime > 1 ? 's' : ''}`;
+    }
+
+    document.addEventListener("DOMContentLoaded", calculateReadingTime);
+
+</script>
+
 </body>
 </html>
