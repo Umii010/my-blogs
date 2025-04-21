@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        /* Import Oxygen font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
+
+        body {
+            font-family: 'Oxygen', sans-serif;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+            font-style: normal;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        code {
+            color: white !important;
+        }
+
+        .comment-section {
+            padding-top: 20px;
+        }
+
+        .comment-section h3 {
+            border-bottom: 3px solid rgb(126, 34, 206);
+            font-size: 1.5rem;
+            color: #0B3749;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+
+        .comment-box {
+            width: 200%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: border-color 0.3s ease-in-out;
+        }
+        .comment-box:focus {
+            border-color: rgb(126, 34, 206);
+            outline: none;
+            box-shadow: 0 0 5px rgba(126, 34, 206, 0.5);
+        }
+
+        .submit-comment {
+            background-color: #7c24cc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-comment:hover {
+            background-color: rgb(126, 34, 206);
+        }
+
+        .comments-list {
+            margin-top: 20px;
+        }
+
+        .comment {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .comment .author {
+            font-weight: bold;
+            color: #0B3749;
+        }
+
+        .comment .timestamp {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .comment .text {
+            margin-top: 5px;
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        .install-laravel {
+            color: rgb(126, 34, 206);
+            font-weight: 600;
+            text-align: center;
+            font-size: 2.5rem;
+            line-height: 130%;
+            letter-spacing: 0.5px;
+            margin-bottom: 0px;
+        }
+
+        /* Author Information */
+        .author-info {
+            text-align: center;
+            margin: 20px 0;
+            border-bottom: 2px solid #f4f4f4;
+            padding-bottom: 20px;
+        }
+
+        .author-info img {
+            width: 90px;
+            height: 95px;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .author-info img:hover {
+            transform: scale(1.1);
+        }
+
+        h2 {
+            color: #0B3749;
+            font-weight: bold;
+            margin-top: 30px;
+            border-bottom: 3px solid rgb(126, 34, 206);
+            padding-bottom: 2px;
+        }
+
+        /* Link Styles */
+        a {
+            color: #05e0c0;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: rgb(126, 34, 206);
+            text-decoration: underline;
+        }
+
+        .code-container {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            background-color: #05e0c0;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            top: 10px;
+        }
+
+        .copy-btn:hover {
+            background-color: rgb(126, 34, 206);
+        }
+
+        .umer-shahzad {
+            font-size: 38px;
+            line-height: 130%;
+            letter-spacing: 0.5px;
+            font-weight: 200;
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <div class="container">
+            <p class="install-laravel">Understanding Laravel Middleware with Real-World Examples</p>
+
+            <div class="author-info">
+                <p class="umer-shahzad">Muhammad Umer Shahzad</p>
+                <p class="info"><i class="fas fa-calendar-alt"></i><em>Published on: <span id="publish-date">September 27, 2024</span></em></p>
+                <p class="info"><i class="fas fa-clock"></i><em>Estimated reading time: <span id="reading-time">7 minutes</span></em></p>
+            </div>
+
+            <h2>What is Middleware?</h2>
+            <p>Laravel middleware acts as a filter for HTTP requests entering your application. It's a powerful concept that helps you add functionality around your routes — like authentication, logging, or CORS handling — without bloating your controller logic.</p>
+            <p>Think of middleware as a gatekeeper. Before a request hits your controller, Laravel checks if any middleware needs to act on it. For example, a middleware could check if a user is authenticated before allowing them to view a page.</p>
+
+            <h2>Creating Middleware</h2>
+            <p>To create a new middleware, run the following Artisan command:</p>
+            
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyToClipboard('#code1')"><i class="fas fa-copy"></i> Copy</button>
+                <code id="code1">php artisan make:middleware CheckRole</code>
+            </div>
+            
+            <p>This command creates a new middleware file in <code>app/Http/Middleware</code>.</p>
+
+            <h3>Sample Middleware Logic:</h3>
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyToClipboard('#code2')"><i class="fas fa-copy"></i> Copy</button>
+                <code id="code2">public function handle($request, Closure $next)
+{
+    if (auth()->check() && auth()->user()->role == 'admin') {
+        return $next($request);
+    }
+
+    return redirect('/login');
+}</code>
+            </div>
+
+            <h2>Registering Middleware</h2>
+            <p>Add your middleware to the <code>$routeMiddleware</code> array in <code>app/Http/Kernel.php</code>:</p>
+            
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyToClipboard('#code3')"><i class="fas fa-copy"></i> Copy</button>
+                <code id="code3">'check.role' => \App\Http\Middleware\CheckRole::class,</code>
+            </div>
+
+            <h2>Using Middleware in Routes</h2>
+            <p>You can apply middleware to routes in several ways. Here's the most common approach:</p>
+            
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyToClipboard('#code4')"><i class="fas fa-copy"></i> Copy</button>
+                <code id="code4">Route::get('/admin', function () {
+    return view('admin.dashboard');
+})->middleware('check.role');</code>
+            </div>
+
+            <h2>Middleware Groups</h2>
+            <p>Laravel allows you to group middleware for easier application to routes:</p>
+            
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyToClipboard('#code5')"><i class="fas fa-copy"></i> Copy</button>
+                <code id="code5">Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    });
+});</code>
+            </div>
+
+            <h2>Real-World Use Cases</h2>
+            <ul>
+                <li><strong>Authentication:</strong> Verify user is logged in before accessing protected routes</li>
+                <li><strong>Authorization:</strong> Check user roles or permissions</li>
+                <li><strong>Logging:</strong> Record user activity or API requests</li>
+                <li><strong>Localization:</strong> Set language preferences based on user settings</li>
+                <li><strong>API Throttling:</strong> Limit request rates to prevent abuse</li>
+                <li><strong>CORS Handling:</strong> Manage cross-origin resource sharing policies</li>
+                <li><strong>Maintenance Mode:</strong> Temporarily disable access during updates</li>
+            </ul>
+
+            <h2>Middleware Parameters</h2>
+            <p>You can pass parameters to middleware for more flexible behavior:</p>
+            
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyToClipboard('#code6')"><i class="fas fa-copy"></i> Copy</button>
+                <code id="code6">Route::get('/posts/{post}', function (Post $post) {
+    return view('post.show', ['post' => $post]);
+})->middleware('can:view,post');</code>
+            </div>
+
+            <h2>Terminable Middleware</h2>
+            <p>Some middleware needs to do work after the response is sent to the browser. You can create terminable middleware by adding a <code>terminate</code> method:</p>
+            
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyToClipboard('#code7')"><i class="fas fa-copy"></i> Copy</button>
+                <code id="code7">public function terminate($request, $response)
+{
+    // Log the request after the response is sent
+    Log::info('Request completed', [
+        'url' => $request->url(),
+        'status' => $response->status()
+    ]);
+}</code>
+            </div>
+
+            <h2>Conclusion</h2>
+            <p>Middleware helps you write cleaner, more maintainable Laravel applications by separating concerns and enhancing the security and flexibility of your app. With the examples provided, you should now have a solid foundation for implementing middleware in your own projects.</p>
+            <p>Remember that middleware is just one tool in Laravel's powerful feature set. Use it judiciously to keep your application organized and secure.</p>
+
+            <div class="comment-section">
+                <h3>Comments</h3>
+                <textarea class="comment-box" id="comment-box" placeholder="Add your comment here..."></textarea>
+                <button class="submit-comment" id="submit-comment">Submit Comment</button>
+                <div class="comments-list" id="comments-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulate blog post ID for AJAX (replace with your dynamic ID logic)
+        const postId = '12345';
+
+        // Function to handle comment submission
+        $(document).on('click', '#submit-comment', function () {
+            const commentText = $('#comment-box').val().trim();
+            if (!commentText) {
+                alert('Please write a comment before submitting.');
+                return;
+            }
+
+            // AJAX POST request to submit the comment
+            $.ajax({
+                url: '/submit-comment', // Replace with your backend endpoint
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    postId: postId,
+                    comment: commentText
+                }),
+                success: function (response) {
+                    // Append the new comment to the comment list
+                    $('#comments-list').prepend(`
+                        <div class="comment">
+                            <p class="author">You</p>
+                            <p class="timestamp">Just now</p>
+                            <p class="text">${commentText}</p>
+                        </div>
+                    `);
+
+                    // Clear the comment box
+                    $('#comment-box').val('');
+                },
+                error: function () {
+                    alert('Failed to post comment. Please try again later.');
+                }
+            });
+        });
+
+        // Function to load comments via AJAX
+        function loadComments() {
+            $.ajax({
+                url: `/get-comments?postId=${postId}`, // Replace with your backend endpoint
+                method: 'GET',
+                success: function (comments) {
+                    comments.forEach(comment => {
+                        $('#comments-list').append(`
+                            <div class="comment">
+                                <p class="author">${comment.author}</p>
+                                <p class="timestamp">${comment.timestamp}</p>
+                                <p class="text">${comment.text}</p>
+                            </div>
+                        `);
+                    });
+                },
+                error: function () {
+                    $('#comments-list').html('<p>Failed to load comments. Please try again later.</p>');
+                }
+            });
+        }
+
+        // Load comments on page load
+        $(document).ready(function () {
+            loadComments();
+        });
+
+        function copyToClipboard(elementId) {
+            const copyText = document.querySelector(elementId);
+            const textArea = document.createElement("textarea");
+            textArea.value = copyText.innerText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+
+            const message = document.createElement("div");
+            message.innerText = "Copied Successfully!";
+            message.style.position = "fixed";
+            message.style.bottom = "20px";
+            message.style.right = "20px";
+            message.style.backgroundColor = "#28a745";
+            message.style.color = "white";
+            message.style.padding = "10px 20px";
+            message.style.borderRadius = "5px";
+            message.style.zIndex = "9999";
+            message.style.fontSize = "14px";
+            document.body.appendChild(message);
+            setTimeout(() => {
+                message.remove();
+            }, 2000);
+        }
+
+        function calculateReadingTime() {
+            const blogContent = document.body.innerText;
+
+            const wordCount = blogContent.split(/\s+/).filter(word => word.length > 0).length;
+
+            const wordsPerMinute = 200;
+            const readingTime = Math.ceil(wordCount / wordsPerMinute);
+
+            const readingTimeElement = document.getElementById('reading-time');
+            readingTimeElement.innerText = `${readingTime} minute${readingTime > 1 ? 's' : ''}`;
+        }
+
+        document.addEventListener("DOMContentLoaded", calculateReadingTime);
+    </script>
+</body>
+</html>
