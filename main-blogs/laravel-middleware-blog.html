@@ -38,7 +38,7 @@
         }
 
         .comment-box {
-            width: 200%;
+            width: 100%;
             padding: 10px;
             font-size: 1rem;
             border: 1px solid #ddd;
@@ -154,29 +154,39 @@
         }
 
         .code-container {
-            background-color: #333;
-            color: #fff;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-            margin: 20px 0;
-            font-family: 'Courier New', monospace;
-            font-size: 1rem;
-            position: relative;
-        }
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin: 20px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    position: relative;
+    white-space: nowrap; /* Ensures long code stays in one line and scrolls */
+}
 
-        .copy-btn {
-            position: absolute;
-            right: 10px;
-            background-color: #05e0c0;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            top: 10px;
-        }
+.code-container code {
+    display: inline-block;
+    min-width: 100%;
+    white-space: pre; /* Keeps indentation */
+}
+
+
+.copy-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 10;
+    background-color: #05e0c0;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
 
         .copy-btn:hover {
             background-color: rgb(126, 34, 206);
@@ -194,7 +204,7 @@
 <body>
     <div class="section">
         <div class="container">
-            <p class="install-laravel">Understanding Laravel Middleware with Real-World Examples</p>
+            <p class="install-laravel">Understanding Middleware in Laravel 11 with Real-World Examples</p>
 
             <div class="author-info">
                 <p class="umer-shahzad">Muhammad Umer Shahzad</p>
@@ -214,7 +224,7 @@
                 <code id="code1">php artisan make:middleware CheckRole</code>
             </div>
             
-            <p>This command creates a new middleware file in <code>app/Http/Middleware</code>.</p>
+            <p>This command creates a new middleware file in app/Http/Middleware.</p>
 
             <h3>Sample Middleware Logic:</h3>
             <div class="code-container">
@@ -230,11 +240,14 @@
             </div>
 
             <h2>Registering Middleware</h2>
-            <p>Add your middleware to the <code>$routeMiddleware</code> array in <code>app/Http/Kernel.php</code>:</p>
+            <p>If you want a middleware to run during every HTTP request to your application, you may append it to the global middleware stack in your application's bootstrap/app.php file:</p>
             
             <div class="code-container">
                 <button class="copy-btn" onclick="copyToClipboard('#code3')"><i class="fas fa-copy"></i> Copy</button>
-                <code id="code3">'check.role' => \App\Http\Middleware\CheckRole::class,</code>
+                <code id="code3">use App\Http\Middleware\EnsureTokenIsValid;
+                      ->withMiddleware(function (Middleware $middleware) {
+                         $middleware->append(CheckRole::class);
+                    })</code>
             </div>
 
             <h2>Using Middleware in Routes</h2>
