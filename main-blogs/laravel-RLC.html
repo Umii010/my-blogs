@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        /* Import Oxygen font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
+
+        body {
+            font-family: 'Oxygen', sans-serif;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+            font-style: normal;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        code {
+            color: white !important;
+   
+}
+
+         .comment-section {
+            padding-top: 20px;
+        }
+
+        .comment-section h3 {
+            border-bottom: 3px solid rgb(126, 34, 206);
+            font-size: 1.5rem;
+            color: #0B3749;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+
+        .comment-box {
+            width: 200%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: border-color 0.3s ease-in-out;
+
+        }
+         .comment-box:focus {
+        border-color: rgb(126, 34, 206);
+        outline: none;
+        box-shadow: 0 0 5px rgba(126, 34, 206, 0.5);
+    }
+
+        .submit-comment {
+            background-color: #7c24cc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-comment:hover {
+            background-color: rgb(126, 34, 206);
+        }
+
+        .comments-list {
+            margin-top: 20px;
+        }
+
+        .comment {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .comment .author {
+            font-weight: bold;
+            color: #0B3749;
+        }
+
+        .comment .timestamp {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .comment .text {
+            margin-top: 5px;
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        .install-laravel {
+            color: rgb(126, 34, 206);
+            font-weight: 600;
+            text-align: center;
+            font-size: 2.5rem;
+            line-height: 130%;
+            letter-spacing: 0.5px;
+            margin-bottom: 0px;
+        }
+
+        /* Author Information */
+        .author-info {
+            text-align: center;
+            margin: 20px 0;
+            border-bottom: 2px solid #f4f4f4;
+            padding-bottom: 20px;
+        }
+
+        .author-info img {
+            width: 90px;
+            height: 95px;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .author-info img:hover {
+            transform: scale(1.1);
+        }
+
+        h2 {
+            color: #0B3749;
+            font-weight: bold;
+            margin-top: 30px;
+            border-bottom: 3px solid rgb(126, 34, 206);
+            padding-bottom: 2px;
+        }
+
+        /* Link Styles */
+        a {
+            color: #05e0c0;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: rgb(126, 34, 206);
+            text-decoration: underline;
+        }
+
+        .code-container {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            background-color: #05e0c0;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            top: 10px;
+        }
+
+        .copy-btn:hover {
+            background-color: rgb(126, 34, 206);
+        }
+
+        .umer-shahzad {
+            font-size: 38px;
+            line-height: 130%;
+            letter-spacing: 0.5px;
+            font-weight: 200;
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <div class="container">
+            <p class="install-laravel">How Laravel Request Life Cycle Works</p>
+
+            <div class="author-info">
+             
+                <p class="umer-shahzad">Muhammad Umer Shahzad</p>
+                <p class="info"><i class="fas fa-calendar-alt"></i><em>Published on: <span id="publish-date">October 01, 2024</span></em></p>
+                <p class="info"><i class="fas fa-clock"></i><em>Estimated reading time: <span id="reading-time">10 minutes</span></em></p>
+            </div>
+
+            <h2>Introduction</h2>
+            <p>Hi Guys, Welcome to the new blog! In this post, I'm going to discuss how Request Life Cycle works in <strong>Laravel 11</strong>, the famous PHP framework.</p>
+
+            
+
+            <h2>Life Cycle Overivew</h2>
+           <p>The entry point for all requests to a Laravel application is the public/index.php file. All requests are directed to this file by your web server (Apache / Nginx) configuration. The index.php file doesn't contain much code. Rather, it is a starting point for loading the rest of the framework.</p>
+        
+
+            <h2>HTTP/Console Kernels</h2>
+          <p>Next, the incoming request is sent to either the HTTP kernel or the console kernel, using the handleRequest or handleCommand methods of the application instance, depending on the type of request entering the application.
+            The HTTP kernel defines an array of bootstrappers that will be run before the request is executed.
+          </p>
+        
+
+            <h2>Service Providers</h2>
+            <p>One of the most important kernel bootstrapping actions is loading the service providers for your application. Service providers are responsible for bootstrapping all of the framework's various components, such as the database, queue, validation, and routing components.</p>
+            
+
+            <h2>Routing</h2>
+
+            <p>Once the application has been bootstrapped and all service providers have been registered, the Request will be handed off to the router for dispatching. The router will dispatch the request to a route or controller, as well as run any route specific middleware.</p>
+
+            <p>Middleware provide a convenient mechanism for filtering or examining HTTP requests entering your application. For example, Laravel includes a middleware that verifies if the user of your application is authenticated. If the user is not authenticated, the middleware will redirect the user to the login screen. However, if the user is authenticated, the middleware will allow the request to proceed further into the application.</p>
+
+            <h2>Finishing Up</h2>
+            <p>Once the route or controller method returns a response, the response will travel back outward through the route's middleware, giving the application a chance to modify or examine the outgoing response.
+            </p>
+            <p>
+                Finally, once the response travels back through the middleware, the HTTP kernel's handle method returns the response object to the handleRequest of the application instance, and this method calls the send method on the returned response. The send method sends the response content to the user's web browser. We've now completed our journey through the entire Laravel request lifecycle!</p>
+            
+            <h2>Step 6: Conclusion</h2>
+            <p>Congratulations! You've successfully learned the laravel request life cycle in detail, you are ready to go !</p>
+
+            <p>Stay tuned, and happy coding!</p>
+        </div>
+    </div>
+
+
+ 
+
+
+   <script>
+
+ // Simulate blog post ID for AJAX (replace with your dynamic ID logic)
+        const postId = '12345';
+
+        // Function to handle comment submission
+        $(document).on('click', '#submit-comment', function () {
+            const commentText = $('#comment-box').val().trim();
+            if (!commentText) {
+                alert('Please write a comment before submitting.');
+                return;
+            }
+
+            // AJAX POST request to submit the comment
+            $.ajax({
+                url: '/submit-comment', // Replace with your backend endpoint
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    postId: postId,
+                    comment: commentText
+                }),
+                success: function (response) {
+                    // Append the new comment to the comment list
+                    $('#comments-list').prepend(`
+                        <div class="comment">
+                            <p class="author">You</p>
+                            <p class="timestamp">Just now</p>
+                            <p class="text">${commentText}</p>
+                        </div>
+                    `);
+
+                    // Clear the comment box
+                    $('#comment-box').val('');
+                },
+                error: function () {
+                    alert('Failed to post comment. Please try again later.');
+                }
+            });
+        });
+
+        // Function to load comments via AJAX
+        function loadComments() {
+            $.ajax({
+                url: `/get-comments?postId=${postId}`, // Replace with your backend endpoint
+                method: 'GET',
+                success: function (comments) {
+                    comments.forEach(comment => {
+                        $('#comments-list').append(`
+                            <div class="comment">
+                                <p class="author">${comment.author}</p>
+                                <p class="timestamp">${comment.timestamp}</p>
+                                <p class="text">${comment.text}</p>
+                            </div>
+                        `);
+                    });
+                },
+                error: function () {
+                    $('#comments-list').html('<p>Failed to load comments. Please try again later.</p>');
+                }
+            });
+        }
+
+        // Load comments on page load
+        $(document).ready(function () {
+            loadComments();
+        });
+
+
+
+    function copyToClipboard(elementId) {
+        const copyText = document.querySelector(elementId);
+        const textArea = document.createElement("textarea");
+        textArea.value = copyText.innerText;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+
+        const message = document.createElement("div");
+        message.innerText = "Copied Successfully!";
+        message.style.position = "fixed";
+        message.style.bottom = "20px";
+        message.style.right = "20px";
+        message.style.backgroundColor = "#28a745";
+        message.style.color = "white";
+        message.style.padding = "10px 20px";
+        message.style.borderRadius = "5px";
+        message.style.zIndex = "9999";
+        message.style.fontSize = "14px";
+        document.body.appendChild(message);
+        setTimeout(() => {
+            message.remove();
+        }, 2000);
+    }
+
+    function calculateReadingTime() {
+        const blogContent = document.body.innerText;
+
+        const wordCount = blogContent.split(/\s+/).filter(word => word.length > 0).length;
+
+        const wordsPerMinute = 200;
+        const readingTime = Math.ceil(wordCount / wordsPerMinute);
+
+        const readingTimeElement = document.getElementById('reading-time');
+        readingTimeElement.innerText = `${readingTime} minute${readingTime > 1 ? 's' : ''}`;
+    }
+
+    document.addEventListener("DOMContentLoaded", calculateReadingTime);
+
+</script>
+
+</body>
+</html>
